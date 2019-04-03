@@ -14,8 +14,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Rockschtar\\WordPress\\Adminpage\\": "src/",
-      "Rockschtar\\WordPress\\Adminpage\\Tests\\": "tests/"
+      "Rockschtar\\WordPress\\AdminPage\\": "src/",
+      "Rockschtar\\WordPress\\AdminPage\\Tests\\": "tests/"
     }
   }
 }
