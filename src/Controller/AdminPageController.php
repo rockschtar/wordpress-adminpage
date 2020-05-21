@@ -5,16 +5,19 @@ namespace Rockschtar\WordPress\AdminPage\Controller;
 use Rockschtar\WordPress\AdminPage\Models\AdminPageConfig;
 use Rockschtar\WordPress\AdminPage\Views\AdminPageViewInterface;
 
-abstract class AdminPageController {
+abstract class AdminPageController
+{
 
     private static $_instances = array();
     private $hook_suffix;
 
-    final public function __construct() {
+    final public function __construct()
+    {
         add_action('admin_menu', array(&$this, 'addAdminMenu'));
     }
 
-    final public static function &init() {
+    final public static function &init()
+    {
         /** @noinspection ClassConstantCanBeUsedInspection */
         $class = get_called_class();
         if (!isset(self::$_instances[$class])) {
@@ -25,17 +28,31 @@ abstract class AdminPageController {
 
     abstract public function loadView(): void;
 
-    final public function addAdminMenu(): void {
+    final public function addAdminMenu(): void
+    {
 
         $config = $this->getConfig();
 
         if (!$config->isSubmenu()) {
-            $this->hook_suffix = add_menu_page($config->getPageTitle(), $config->getMenuTitle(), $config->getCapability(), $config->getMenuSlug(), array(&$this,
-                                                                                                                                                         '_displayView'));
+            $this->hook_suffix = add_menu_page(
+                $config->getPageTitle(),
+                $config->getMenuTitle(),
+                $config->getCapability(),
+                $config->getMenuSlug(),
+                array(&$this, '_displayView'),
+                $config->getIconUrl(),
+                $config->getMenuPosition()
+            );
         } else {
             $this->hook_suffix =
-                add_submenu_page($config->getParentSlug(), $config->getPageTitle(), $config->getMenuTitle(), $config->getCapability(), $config->getMenuSlug(), array(&$this,
-                                                                                                                                                                     '_displayView'));
+                add_submenu_page(
+                    $config->getParentSlug(),
+                    $config->getPageTitle(),
+                    $config->getMenuTitle(),
+                    $config->getCapability(),
+                    $config->getMenuSlug(),
+                    array(&$this, '_displayView')
+                );
         }
 
         do_action('rsap-view-created', $this->hook_suffix);
@@ -45,12 +62,14 @@ abstract class AdminPageController {
 
     abstract public function getConfig(): AdminPageConfig;
 
-    final public function getViewUrl(): string {
+    final public function getViewUrl(): string
+    {
         return menu_page_url($this->getConfig()
                                   ->getMenuSlug(), false);
     }
 
-    final public function _enqueueScripts($hook): void {
+    final public function _enqueueScripts($hook): void
+    {
         if ($hook === $this->hook_suffix) {
             $this->enqueueScripts();
         }
@@ -58,11 +77,11 @@ abstract class AdminPageController {
 
     abstract public function enqueueScripts(): void;
 
-    final public function _displayView(): void {
+    final public function _displayView(): void
+    {
         $view = $this->getView();
         $view->displayView();
     }
 
     abstract public function getView(): AdminPageViewInterface;
-
 }

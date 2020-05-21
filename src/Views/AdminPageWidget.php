@@ -2,29 +2,35 @@
 
 namespace Rockschtar\WordPress\AdminPage\Views;
 
-class AdminPageWidget implements AdminPageViewInterface {
+class AdminPageWidget implements AdminPageViewInterface
+{
     private $id;
     private $headline;
     private $content;
 
-    public function __construct(string $id, ?string $headline = '') {
+    public function __construct(string $id, ?string $headline = '')
+    {
         $this->id = $id;
         $this->headline = $headline;
     }
 
-    public function setContent(?string $content): void {
+    public function setContent(?string $content): void
+    {
         $this->content = $content;
     }
 
-    public function setHeadline(string $headline): void {
+    public function setHeadline(string $headline): void
+    {
         $this->headline = $headline;
     }
 
-    public function displayView(): void {
+    public function displayView(): void
+    {
         echo $this->getView();
     }
 
-    public function getView(): string {
+    public function getView(): string
+    {
         $view = "<div class=\"postbox\" id=\"{$this->id}\">\n";
         $view .= "<h2><span>{$this->headline}</span></h2>\n";
         $view .= "<div class=\"inside\">\n";

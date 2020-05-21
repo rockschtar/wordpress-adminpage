@@ -1,20 +1,20 @@
 <?php
 
-
 namespace Rockschtar\WordPress\AdminPage\Models;
 
-
-class AdminPageConfig {
+class AdminPageConfig
+{
     private $submenu = false;
     private $parent_slug = '';
     private $page_title = '';
     private $menu_title = '';
     private $capability = '';
     private $menu_slug = '';
-    private $icon_url = '';
-    private $menu_position;
+    private $icon_url = null;
+    private $menu_position = null;
 
-    public static function init(): AdminPageConfig {
+    public static function init(): AdminPageConfig
+    {
 
         return new self();
     }
@@ -23,7 +23,8 @@ class AdminPageConfig {
     /**
      * @return mixed
      */
-    public function getParentSlug() {
+    public function getParentSlug()
+    {
         return $this->parent_slug;
     }
 
@@ -31,7 +32,8 @@ class AdminPageConfig {
      * @param mixed $parent_slug
      * @return $this
      */
-    public function setParentSlug($parent_slug): self {
+    public function setParentSlug($parent_slug): self
+    {
         $this->parent_slug = $parent_slug;
         return $this;
     }
@@ -39,7 +41,8 @@ class AdminPageConfig {
     /**
      * @return mixed
      */
-    public function getPageTitle() {
+    public function getPageTitle()
+    {
         return $this->page_title;
     }
 
@@ -47,7 +50,8 @@ class AdminPageConfig {
      * @param mixed $page_title
      * @return $this
      */
-    public function setPageTitle($page_title): self {
+    public function setPageTitle($page_title): self
+    {
         $this->page_title = $page_title;
         return $this;
     }
@@ -55,7 +59,8 @@ class AdminPageConfig {
     /**
      * @return mixed
      */
-    public function getMenuTitle() {
+    public function getMenuTitle()
+    {
         return $this->menu_title;
     }
 
@@ -63,7 +68,8 @@ class AdminPageConfig {
      * @param mixed $menu_title
      * @return $this
      */
-    public function setMenuTitle($menu_title): self {
+    public function setMenuTitle($menu_title): self
+    {
         $this->menu_title = $menu_title;
         return $this;
     }
@@ -71,7 +77,8 @@ class AdminPageConfig {
     /**
      * @return mixed
      */
-    public function getCapability() {
+    public function getCapability()
+    {
         return $this->capability;
     }
 
@@ -79,7 +86,8 @@ class AdminPageConfig {
      * @param mixed $capability
      * @return $this
      */
-    public function setCapability($capability): self {
+    public function setCapability($capability): self
+    {
         $this->capability = $capability;
         return $this;
     }
@@ -87,7 +95,8 @@ class AdminPageConfig {
     /**
      * @return mixed
      */
-    public function getMenuSlug() {
+    public function getMenuSlug()
+    {
         return $this->menu_slug;
     }
 
@@ -95,15 +104,17 @@ class AdminPageConfig {
      * @param mixed $menu_slug
      * @return $this
      */
-    public function setMenuSlug($menu_slug): self {
+    public function setMenuSlug($menu_slug): self
+    {
         $this->menu_slug = $menu_slug;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getIconUrl() {
+    public function getIconUrl(): ?string
+    {
         return $this->icon_url;
     }
 
@@ -111,24 +122,26 @@ class AdminPageConfig {
      * @param mixed $icon_url
      * @return $this
      */
-    public function setIconUrl($icon_url): self {
+    public function setIconUrl($icon_url): self
+    {
         $this->icon_url = $icon_url;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return int|null
      */
-    public function getMenuPosition() {
+    public function getMenuPosition(): ?int
+    {
         return $this->menu_position;
-
     }
 
     /**
      * @param mixed $menu_position
      * @return $this
      */
-    public function setMenuPosition($menu_position): self {
+    public function setMenuPosition($menu_position): self
+    {
         $this->menu_position = $menu_position;
         return $this;
     }
@@ -136,7 +149,8 @@ class AdminPageConfig {
     /**
      * @return bool
      */
-    public function isSubmenu(): bool {
+    public function isSubmenu(): bool
+    {
         return $this->submenu;
     }
 
@@ -144,7 +158,8 @@ class AdminPageConfig {
      * @param bool $submenu
      * @return $this
      */
-    public function setSubmenu(bool $submenu): self {
+    public function setSubmenu(bool $submenu): self
+    {
         $this->submenu = $submenu;
         return $this;
     }

@@ -2,7 +2,8 @@
 
 namespace Rockschtar\WordPress\AdminPage\Models;
 
-final class ListTableColumn {
+final class ListTableColumn
+{
 
     private $id;
     private $title;
@@ -12,7 +13,8 @@ final class ListTableColumn {
      * @param $id
      * @param $title
      */
-    public function __construct($id, $title) {
+    public function __construct($id, $title)
+    {
         $this->id = $id;
         $this->title = $title;
     }
@@ -20,30 +22,32 @@ final class ListTableColumn {
     /**
      * @return mixed
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
     /**
      * @param mixed $id
      */
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
     /**
      * @return mixed
      */
-    public function getTitle() {
+    public function getTitle()
+    {
         return $this->title;
     }
 
     /**
      * @param mixed $title
      */
-    public function setTitle($title) {
+    public function setTitle($title)
+    {
         $this->title = $title;
     }
-
-
 }

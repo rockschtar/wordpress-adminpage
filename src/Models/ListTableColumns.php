@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: rocks
@@ -8,7 +9,10 @@
 
 namespace Rockschtar\WordPress\AdminPage\Models;
 
-class ListTableColumns {
+class ListTableColumns
+{
+
+
 
     /**
      * ListTableColumn[]
@@ -19,22 +23,26 @@ class ListTableColumns {
      * ListTableColumns constructor.
      * @param ListTableColumn[] $columns
      */
-    public function __construct(array $columns = array()) {
+    public function __construct(array $columns = array())
+    {
         $this->columns = $columns;
     }
 
-    public function addColumn(ListTableColumn $column) {
+    public function addColumn(ListTableColumn $column)
+    {
         $this->columns[] = $column;
     }
 
     /**
      * @return ListTableColumn[]
      */
-    public function getColumns() {
+    public function getColumns()
+    {
         return $this->columns;
     }
 
-    public function getColumnCount() {
+    public function getColumnCount()
+    {
         return count($this->columns);
     }
 }

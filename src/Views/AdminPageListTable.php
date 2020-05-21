@@ -7,7 +7,8 @@ use Rockschtar\WordPress\AdminPage\Models\ListTableColumns;
 use Rockschtar\WordPress\AdminPage\Models\ListTablePagination;
 use WP_Screen;
 
-abstract class AdminPageListTable implements AdminPageViewInterface {
+abstract class AdminPageListTable implements AdminPageViewInterface
+{
 
     /**
      * @var array
@@ -26,35 +27,41 @@ abstract class AdminPageListTable implements AdminPageViewInterface {
     private $table_nav_extra;
     private $current_page;
 
-    public function __construct(String $id, array $items = array()) {
+    public function __construct(string $id, array $items = array())
+    {
         $this->id = sanitize_key($id);
         $this->items = $items;
         $this->screen = convert_to_screen($this->id);
     }
 
-    final public function setCurrentPage(int $current_page): void {
+    final public function setCurrentPage(int $current_page): void
+    {
         $this->current_page = $current_page;
     }
 
     /**
      * @param mixed $content_before
      */
-    final public function setContentBefore($content_before): void {
+    final public function setContentBefore($content_before): void
+    {
         $this->content_before = $content_before;
     }
 
     /**
      * @param mixed $content_after
      */
-    final public function setContentAfter($content_after): void {
+    final public function setContentAfter($content_after): void
+    {
         $this->content_after = $content_after;
     }
 
-    final public function displayView(): void {
+    final public function displayView(): void
+    {
         echo $this->getTableHtml();
     }
 
-    final public function getTableHtml(): String {
+    final public function getTableHtml(): string
+    {
         $table_html = $this->getContentBefore();
         $table_html .= $this->getTableNav('top');
         $table_html .= "<table class=\"widefat\">\n";
@@ -71,14 +78,16 @@ abstract class AdminPageListTable implements AdminPageViewInterface {
     /**
      * @return mixed
      */
-    private function getContentBefore() {
+    private function getContentBefore()
+    {
         $content_before = apply_filters('wpu_listtable_before_table', $this->content_before, $this->screen->id);
         $content_before = apply_filters('wpu_listtable_before_table_' . $this->screen->id, $content_before);
 
         return $content_before;
     }
 
-    private function getTableNav($which) {
+    private function getTableNav($which)
+    {
         $html = apply_filters('wpu_listtable_before_tablenav', '');
         $html .= '<div class="tablenav ' . esc_attr($which) . '">';
         $html .= '<div class="alignleft actions bulkactions"></div>'; //TODO Implement Bulk Actions
@@ -90,15 +99,18 @@ abstract class AdminPageListTable implements AdminPageViewInterface {
         return $html;
     }
 
-    final public function getTableNavExtra(): ?String {
+    final public function getTableNavExtra(): ?string
+    {
         return $this->table_nav_extra;
     }
 
-    final public function setTableNavExtra(String $table_nav_extra): void {
+    final public function setTableNavExtra(string $table_nav_extra): void
+    {
         $this->table_nav_extra = $table_nav_extra;
     }
 
-    private function getPaginationHTML($which) {
+    private function getPaginationHTML($which)
+    {
         $pagination = $this->getPagination();
 
         if (null === $pagination) {
@@ -204,7 +216,8 @@ abstract class AdminPageListTable implements AdminPageViewInterface {
 
     abstract protected function getPagination(): ?ListTablePagination;
 
-    private function getCurrentPage(): int {
+    private function getCurrentPage(): int
+    {
 
         $pagenum = $this->current_page;
         $pagenum = $pagenum ?? isset($_REQUEST['paged']) ? absint($_REQUEST['paged']) : 1;
@@ -222,7 +235,8 @@ abstract class AdminPageListTable implements AdminPageViewInterface {
         return max(1, $pagenum);
     }
 
-    private function getTableHeader(): String {
+    private function getTableHeader(): string
+    {
         $columns = $this->getColumns();
 
         $html = do_action('wpu_listtable_before_table_header', $this->screen->id);
@@ -237,7 +251,8 @@ abstract class AdminPageListTable implements AdminPageViewInterface {
 
     abstract public function getColumns(): ListTableColumns;
 
-    private function getTableRows(): String {
+    private function getTableRows(): string
+    {
         $html = '<tbody>';
         foreach ($this->items as $index => $item) {
             $row_number = $index + 1;
@@ -248,7 +263,8 @@ abstract class AdminPageListTable implements AdminPageViewInterface {
         return $html;
     }
 
-    private function getTableRow($item, int $row_number): String {
+    private function getTableRow($item, int $row_number): string
+    {
         $columns = $this->getColumns();
 
         $css_class = ($row_number % 2 === 0) ? '' : 'alternate';
@@ -264,25 +280,28 @@ abstract class AdminPageListTable implements AdminPageViewInterface {
         return $html;
     }
 
-    abstract protected function getColumnItemValue(ListTableColumn $column, $item): ?String;
+    abstract protected function getColumnItemValue(ListTableColumn $column, $item): ?string;
 
     /**
      * @return mixed
      */
-    private function getContentAfter() {
+    private function getContentAfter()
+    {
         $content_after = apply_filters('wpu_listtable_before_table', $this->content_after, $this->screen->id);
         $content_after = apply_filters('wpu_listtable_before_table_' . $this->screen->id, $content_after);
         return $content_after;
     }
 
-    final protected function getScreen(): WP_Screen {
+    final protected function getScreen(): WP_Screen
+    {
         return $this->screen;
     }
 
     /**
      * @return string
      */
-    public function getId(): string {
+    public function getId(): string
+    {
         return $this->id;
     }
 }
