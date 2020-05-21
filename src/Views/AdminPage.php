@@ -2,7 +2,8 @@
 
 namespace Rockschtar\WordPress\AdminPage\Views;
 
-class AdminPage implements AdminPageViewInterface {
+class AdminPage implements AdminPageViewInterface
+{
     /**
      * @var
      */
@@ -29,75 +30,87 @@ class AdminPage implements AdminPageViewInterface {
      */
     private $id;
 
-    public function __construct($id) {
+    public function __construct($id)
+    {
         $this->id = $id;
     }
 
     /**
      * @return mixed
      */
-    public function getContent(): ?string {
+    public function getContent(): ?string
+    {
         return $this->content;
     }
 
     /**
      * @param mixed $content
      */
-    public function setContent($content): void {
+    public function setContent($content): void
+    {
         $this->content = $content;
     }
 
-    public function addContent($content): void {
+    public function addContent($content): void
+    {
         $this->content .= $content;
     }
 
     /**
      * @return mixed
      */
-    public function getPageHeadline(): ?string {
+    public function getPageHeadline(): ?string
+    {
         return $this->page_headline;
     }
 
     /**
      * @param mixed $page_headline
      */
-    public function setPageHeadline(?string $page_headline): void {
+    public function setPageHeadline(?string $page_headline): void
+    {
         $this->page_headline = $page_headline;
     }
 
     /**
      * @return mixed
      */
-    public function getContentHeadline(): ?string {
+    public function getContentHeadline(): ?string
+    {
         return $this->content_headline;
     }
 
     /**
      * @param mixed $content_headline
      */
-    public function setContentHeadline(?string $content_headline): void {
+    public function setContentHeadline(?string $content_headline): void
+    {
         $this->content_headline = $content_headline;
     }
 
     /**
      * @return mixed
      */
-    public function getSubHeadline() {
+    public function getSubHeadline()
+    {
         return $this->sub_headline;
     }
 
     /**
      * @param mixed $sub_headline
      */
-    public function setSubHeadline(?string $sub_headline): void {
+    public function setSubHeadline(?string $sub_headline): void
+    {
         $this->sub_headline = $sub_headline;
     }
 
-    final public function displayView(): void {
+    final public function displayView(): void
+    {
         echo $this->getView();
     }
 
-    final public function getView(): string {
+    final public function getView(): string
+    {
 
         $post_body_class = 'columns-1';
 
@@ -138,29 +151,34 @@ class AdminPage implements AdminPageViewInterface {
         return $view;
     }
 
-    public function hasSidebarWidgets(): bool {
+    public function hasSidebarWidgets(): bool
+    {
         return $this->getSidebarWidgetsCount() > 0;
     }
 
-    public function getSidebarWidgetsCount(): int {
+    public function getSidebarWidgetsCount(): int
+    {
         return count($this->sidebar_widgets);
     }
 
     /**
      * @return mixed
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
     /**
      * @param mixed $id
      */
-    public function setId(string $id): void {
+    public function setId(string $id): void
+    {
         $this->id = $id;
     }
 
-    public function addSidebarWidget(AdminPageWidget $sidebar_widget): void {
+    public function addSidebarWidget(AdminPageWidget $sidebar_widget): void
+    {
         $this->sidebar_widgets[] = $sidebar_widget;
     }
 }

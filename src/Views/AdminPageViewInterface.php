@@ -2,6 +2,7 @@
 
 namespace Rockschtar\WordPress\AdminPage\Views;
 
-interface AdminPageViewInterface {
+interface AdminPageViewInterface
+{
     public function displayView(): void;
 }
