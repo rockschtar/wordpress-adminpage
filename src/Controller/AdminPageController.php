@@ -9,11 +9,11 @@ abstract class AdminPageController
 {
 
     private static $_instances = array();
-    private $hook_suffix;
+    private string $hook_suffix = '';
 
     final public function __construct()
     {
-        add_action('admin_menu', array(&$this, 'addAdminMenu'));
+        add_action('admin_menu', $this->addAdminMenu(...));
     }
 
     final public static function &init()
@@ -39,8 +39,8 @@ abstract class AdminPageController
                 $config->getMenuTitle(),
                 $config->getCapability(),
                 $config->getMenuSlug(),
-                array(&$this, '_displayView'),
-                $config->getIconUrl(),
+                $this->_displayView(...),
+                $config->getIcon(),
                 $config->getMenuPosition()
             );
         } else {
@@ -51,13 +51,13 @@ abstract class AdminPageController
                     $config->getMenuTitle(),
                     $config->getCapability(),
                     $config->getMenuSlug(),
-                    array(&$this, '_displayView')
+                    $this->_displayView(...)
                 );
         }
 
         do_action('rsap-view-created', $this->hook_suffix);
-        add_action('load-' . $this->hook_suffix, array(&$this, 'loadView'));
-        add_action('admin_enqueue_scripts', array(&$this, '_enqueueScripts'));
+        add_action('load-' . $this->hook_suffix, $this->loadView(...));
+        add_action('admin_enqueue_scripts', $this->_enqueueScripts(...));
     }
 
     abstract public function getConfig(): AdminPageConfig;

@@ -4,160 +4,102 @@ namespace Rockschtar\WordPress\AdminPage\Models;
 
 class AdminPageConfig
 {
-    private $submenu = false;
-    private $parent_slug = '';
-    private $page_title = '';
-    private $menu_title = '';
-    private $capability = '';
-    private $menu_slug = '';
-    private $icon_url = null;
-    private $menu_position = null;
+    private bool $submenu = false;
+    private string $parentSlug = '';
+    private string $pageTitle = '';
+    private string $menuTitle = '';
+    private string $capability = '';
+    private string $menuSlug = '';
+    private ?string $icon = null;
+    private ?float $menuPosition = null;
 
     public static function init(): AdminPageConfig
     {
-
         return new self();
     }
 
-
-    /**
-     * @return mixed
-     */
-    public function getParentSlug()
+    public function getParentSlug() : string
     {
-        return $this->parent_slug;
+        return $this->parentSlug;
     }
 
-    /**
-     * @param mixed $parent_slug
-     * @return $this
-     */
-    public function setParentSlug($parent_slug): self
+    public function setParentSlug(string $parentSlug): self
     {
-        $this->parent_slug = $parent_slug;
+        $this->parentSlug = $parentSlug;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPageTitle()
+    public function getPageTitle() : string
     {
-        return $this->page_title;
+        return $this->pageTitle;
     }
 
-    /**
-     * @param mixed $page_title
-     * @return $this
-     */
-    public function setPageTitle($page_title): self
+    public function setPageTitle(string $pageTitle): self
     {
-        $this->page_title = $page_title;
+        $this->pageTitle = $pageTitle;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getMenuTitle()
+    public function getMenuTitle() : string
     {
-        return $this->menu_title;
+        return $this->menuTitle;
     }
 
-    /**
-     * @param mixed $menu_title
-     * @return $this
-     */
-    public function setMenuTitle($menu_title): self
+    public function setMenuTitle(string $menuTitle): self
     {
-        $this->menu_title = $menu_title;
+        $this->menuTitle = $menuTitle;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCapability()
+    public function getCapability() : string
     {
         return $this->capability;
     }
 
-    /**
-     * @param mixed $capability
-     * @return $this
-     */
-    public function setCapability($capability): self
+    public function setCapability(string $capability): self
     {
         $this->capability = $capability;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getMenuSlug()
+    public function getMenuSlug() : string
     {
-        return $this->menu_slug;
+        return $this->menuSlug;
     }
 
-    /**
-     * @param mixed $menu_slug
-     * @return $this
-     */
-    public function setMenuSlug($menu_slug): self
+    public function setMenuSlug(string $menuSlug): self
     {
-        $this->menu_slug = $menu_slug;
+        $this->menuSlug = $menuSlug;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getIconUrl(): ?string
+    public function getIcon(): ?string
     {
-        return $this->icon_url;
+        return $this->icon;
     }
 
-    /**
-     * @param mixed $icon_url
-     * @return $this
-     */
-    public function setIconUrl($icon_url): self
+    public function setIcon(string $icon): self
     {
-        $this->icon_url = $icon_url;
+        $this->icon = $icon;
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
-    public function getMenuPosition(): ?int
+    public function getMenuPosition(): ?float
     {
-        return $this->menu_position;
+        return $this->menuPosition;
     }
 
-    /**
-     * @param mixed $menu_position
-     * @return $this
-     */
-    public function setMenuPosition($menu_position): self
+    public function setMenuPosition(float $menuPosition): self
     {
-        $this->menu_position = $menu_position;
+        $this->menuPosition = $menuPosition;
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isSubmenu(): bool
     {
         return $this->submenu;
     }
 
-    /**
-     * @param bool $submenu
-     * @return $this
-     */
     public function setSubmenu(bool $submenu): self
     {
         $this->submenu = $submenu;

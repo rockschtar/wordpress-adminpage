@@ -35,9 +35,6 @@ class AdminPage implements AdminPageViewInterface
         $this->id = $id;
     }
 
-    /**
-     * @return mixed
-     */
     public function getContent(): ?string
     {
         return $this->content;
@@ -56,9 +53,6 @@ class AdminPage implements AdminPageViewInterface
         $this->content .= $content;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPageHeadline(): ?string
     {
         return $this->page_headline;
@@ -72,9 +66,6 @@ class AdminPage implements AdminPageViewInterface
         $this->page_headline = $page_headline;
     }
 
-    /**
-     * @return mixed
-     */
     public function getContentHeadline(): ?string
     {
         return $this->content_headline;
@@ -146,9 +137,8 @@ class AdminPage implements AdminPageViewInterface
         $view .= "</div>\n";
         $view .= "<br class=\"clear\">\n";
         $view .= "</div>\n";
-        $view .= '</div>';
 
-        return $view;
+        return $view . '</div>';
     }
 
     public function hasSidebarWidgets(): bool
